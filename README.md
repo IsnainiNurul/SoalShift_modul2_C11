@@ -176,6 +176,8 @@ Catatan: Tidak boleh menggunakan crontab
  
  **SOAL NO 3**
  
+ 
+ 
 Diberikan file campur2.zip. Di dalam file tersebut terdapat folder “campur2”. 
 
 Buatlah program C yang dapat :
@@ -201,6 +203,8 @@ Pastikan file daftar.txt dapat diakses dari text editor
 
  
  **SOAL NO 4**
+ 
+ 
 Dalam direktori /home/[user]/Documents/makanan terdapat file makan_enak.txt yang berisikan daftar makanan terkenal di Surabaya.
 
 Elen sedang melakukan diet dan seringkali tergiur untuk membaca isi makan_enak.txt karena ngidam makanan enak. Sebagai teman yang
@@ -216,6 +220,7 @@ Pada detik ke-10 terdapat file makan_sehat1.txt dan makan_sehat2.txt
 Catatan: 
 dilarang menggunakan crontab
 Contoh nama file : makan_sehat1.txt, makan_sehat2.txt, dst
+
 **Jawab**
 
 
@@ -223,6 +228,8 @@ Contoh nama file : makan_sehat1.txt, makan_sehat2.txt, dst
 
 
  **SOAL NO 5**
+ 
+ 
 Kerjakan poin a dan b di bawah:
 Buatlah program c untuk mencatat log setiap menit dari file log pada syslog ke /home/[user]/log/[dd:MM:yyyy-hh:mm]/log#.log
 Ket:
