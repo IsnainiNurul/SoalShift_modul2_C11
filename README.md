@@ -223,23 +223,330 @@ Contoh nama file : makan_sehat1.txt, makan_sehat2.txt, dst
 
 **Jawab**
 
+`#include <sys/types.h>
+
+#include <sys/stat.h>
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <fcntl.h>
+
+#include <errno.h>
+
+#include <unistd.h>
+
+#include <syslog.h>
+
+#include <string.h>
+
+#include <time.h>
+
+#include <sys/sysmacros.h>
+
+int main() 
+
+{
+
+pid_t pid, sid;
+
+pid = fork();
+
+if (pid < 0) 
+
+{
+    
+exit(EXIT_FAILURE);
+  
+}
+
+if (pid > 0) 
+
+{
+  
+  exit(EXIT_SUCCESS);
+  
+ }
+
+  umask(0);
+
+  sid = setsid();
+
+  if (sid < 0) 
+  
+  {
+  
+  exit(EXIT_FAILURE);
+  
+  }
+
+  if ((chdir("/")) < 0) {
+    exit(EXIT_FAILURE);
+  }
+
+  close(STDIN_FILENO);
+  
+  close(STDOUT_FILENO);
+  
+  close(STDERR_FILENO);
+  
+  int inc=1;
+
+  while(1) 
+  
+  {
+   
+   char makanEnak[]="/home/galihpribadi04/Documents/makanan/makan_enak.txt";
+   
+   struct stat info;
+   
+   stat(makanEnak,&info);
+   
+   time_t now;
+   
+   time(&now);
+   
+   int rentang;
+
+   rentang = difftime(now, info.st_atime);
+   
+   if(rentang<=30){
+     
+   char path[150],str[20];
+   
+   strcpy(path, "/home/galihpribadi04/Documents/makanan/makan_sehat");
+   
+   sprintf(str,"%d.txt",inc);
+   
+   strcat(path,str);
+     
+   FILE *baru;
+     
+   baru = fopen(path,"w");
+  
+   fclose(baru);
+   
+   inc++;
+
+   sleep(5);
+     
+     }
+  
+  }
+  
+  exit(EXIT_SUCCESS);
+  
+}`
 
 
+**Penjelasan:**
+
+``int inc=1;`` untuk melakukan increment satu kali
+
+``char makanEnak[]="/home/galihpribadi04/Documents/makanan/makan_enak.txt";`` adalah Lokasi dimana file makan_enak.txt berada
+
+
+ ``rentang = difftime(now, info.st_atime);`` untuk Membuat file setiap 30 detik
+   
+ ``strcpy(path, "/home/galihpribadi04/Documents/makanan/makan_sehat");`` untuk membuat file makan_sehat secara otomastis
+  
+strcpy adalah fungsi yang digunakan  untuk  menyalin  string  asal  ke-variabel  string  tujuan, dengan syarat string tujuan 
+
+harus mempunyai tipe data dan dan ukuran  yang sama dengan string asal. File header yang harus disertakan adalah string.h.
+
+Fungsi strcat digunakan untuk menggabungkan dua string menjadi satu.
 
 
  **SOAL NO 5**
  
  
 Kerjakan poin a dan b di bawah:
-Buatlah program c untuk mencatat log setiap menit dari file log pada syslog ke /home/[user]/log/[dd:MM:yyyy-hh:mm]/log#.log
+
+a. Buatlah program c untuk mencatat log setiap menit dari file log pada syslog ke /home/[user]/log/[dd:MM:yyyy-hh:mm]/log#.log
+
 Ket:
+
 Per 30 menit membuat folder /[dd:MM:yyyy-hh:mm]
+
 Per menit memasukkan log#.log ke dalam folder tersebut
+
 ‘#’ : increment per menit. Mulai dari 1
-Buatlah program c untuk menghentikan program di atas.
+
+b. Buatlah program c untuk menghentikan program di atas.
+
 NB: Dilarang menggunakan crontab dan tidak memakai argumen ketika menjalankan program.
 
 **Jawab**
+
+**nomor 5 a**
+``
+#include <sys/types.h>
+
+#include <sys/stat.h>
+
+#include <sys/wait.h>
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <fcntl.h>
+
+#include <errno.h>
+
+#include <unistd.h>
+
+#include <syslog.h>
+
+#include <string.h>
+
+#include <time.h>
+
+#include <signal.h>
+
+void crDaemon();
+
+int main() {
+  
+  pid_t child;
+  
+  int status;
+  
+  int minute = 0;
+  
+  char dtime[20];
+  
+  char dir[100];
+  
+  char *uname;
+  
+  uname = getlogin();
+  
+  sprintf(dir, "/home/%s/log", uname);
+  
+  crDaemon();
+  
+  while(1) {
+  
+  if(minute%30 == 0){
+      
+      time_t now = time(NULL);
+      
+      struct tm *p = localtime(&now);
+      
+      strftime(dtime, sizeof(dtime)-1, "%Y:%m:%d-%H:%M", p);
+    	
+	}
+    
+      child = fork();
+     
+      if(child == 0){
+     
+       char cmd[200];
+     
+       sprintf(cmd, "%s/%s", dir, dtime);
+     
+       char *arg[4] = {"mkdir", "-p" ,cmd, NULL};
+     
+       execv("/bin/mkdir", arg);
+    }
+    
+    while ((wait(&status)) > 0);
+    
+    kill(child, SIGKILL);
+    
+    minute+=1;
+    
+    child = fork();
+    
+    if(child == 0){
+    
+    char sr[] = "/var/log/syslog";
+    
+    char tg[200];
+      
+    sprintf(tg, "%s/%s/log%d.log", dir, dtime, minute);
+    
+    char *argv[4] = {"cp", sr, tg, NULL};
+    
+    execv("/bin/cp", argv);
+    
+    }
+    
+    while ((wait(&status)) > 0);
+    
+    kill(child, SIGKILL);
+    
+    sleep(60);
+  
+  }
+  
+  exit(EXIT_SUCCESS);
+}
+
+void crDaemon(){
+    
+    pid_t pid, sid;
+    
+    pid = fork();
+    
+    if (pid < 0) {
+    
+    exit(EXIT_FAILURE);
+    
+    }
+    
+    if (pid > 0) {
+    
+    exit(EXIT_SUCCESS);
+    
+    }
+    
+    umask(0);
+    
+    sid = setsid();
+    
+    if (sid < 0) {
+    
+    exit(EXIT_FAILURE);
+    
+    }
+    
+    if ((chdir("/")) < 0) {
+    
+    exit(EXIT_FAILURE);
+    
+    }
+    
+    close(STDIN_FILENO);
+    
+    close(STDOUT_FILENO);
+    
+    close(STDERR_FILENO);
+
+}``
+
+
+Penjelasan :
+
+   Berfungsi untuk membuat file setiap 30 menit :
+   
+   ``while(1) {
+    if(minute%30 == 0){
+      time_t now = time(NULL);
+      struct tm *p = localtime(&now);
+      strftime(dtime, sizeof(dtime)-1, "%Y:%m:%d-%H:%M", p);
+    }``
+    
+    
+    
+    
+ 
+    
+    
+   
+
 
 
 
