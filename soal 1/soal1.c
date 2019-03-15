@@ -8,10 +8,12 @@
 #include <fcntl.h>
 #include <errno.h>
 
-int main() {
+int main() 
+{
   pid_t pid, sid;
   pid = fork();
-  if (pid > 0) {
+  if (pid > 0) 
+  {
     exit(EXIT_SUCCESS);
   }
   if (pid < 0) {
@@ -24,7 +26,7 @@ int main() {
     {
       exit(EXIT_FAILURE);
     }
-  if ((chdir("/home/isnaini/Documents/")) < 0) 
+  if ((chdir("/home/isnaini/modul2")) < 0) 
     {
       exit(EXIT_FAILURE);
     }
@@ -35,9 +37,9 @@ int main() {
   while(1) 
     {
       DIR *directory;
-      if (directory=opendir ("/home/isnaini/Documents"))
+      if (directory=opendir ("/home/isnaini/modul2/"))
         {
-	        struct dirent *infolder;
+	  struct dirent *infolder;
           while ((infolder = readdir(directory)) != NULL)
           {
 	        char Filename[1024];
@@ -50,8 +52,11 @@ int main() {
 		        panjang = (int)strlen(Filename);
 		        Filename[panjang-4] = '\0';
 		        strcat(Filename, "_grey.png");
+			if(fork()==0)
+			{
 		        char *move[4] = {"mv", name, Filename, NULL};
 		        execv("/bin/mv", move);
+			}
 	        }
         }
       closedir(directory);
