@@ -197,8 +197,18 @@ Gunakan pipe
 Pastikan file daftar.txt dapat diakses dari text editor
 
 **Jawab**
-
-
+   
+   ``pipe(pepiku);`` untuk membuat pipe
+        	
+   ``pipe(pepiku+2);``untuk membuat pipe
+   
+   ``dup2(inipipe[1], STDOUT_FILENO);`` untuk menyimpan hasil ls
+   
+  ``dup2(inipipe[0],STDIN_FILENO);``untuk untuk membaca hasil ls
+  
+   `` int cetak = read(inipipe[2],hasil,sizeof(hasil));`` untuk mengambil hasil grep
+   
+``fprintf(file," Berikut Berupa File berformat .txt :\n%.*s\n",cetak,hasil);`` untuk memasukan hasil ls grep ke file
 
 
  
