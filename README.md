@@ -540,6 +540,20 @@ Penjelasan :
     }``
     
     
+  BerfUngsi untuk membuat parent
+    ``child = fork();
+    if(child == 0){
+      char cmd[200];
+      sprintf(cmd, "%s/%s", dir, dtime);
+      char *arg[4] = {"mkdir", "-p" ,cmd, NULL};
+      execv("/bin/mkdir", arg);
+    }
+    while ((wait(&status)) > 0);
+    kill(child, SIGKILL);``
+    
+   Setiap 1 menit masukkan file log#.log
+    ``minute+=1;
+    
     
     
  
