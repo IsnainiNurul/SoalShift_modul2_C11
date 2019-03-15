@@ -47,6 +47,7 @@ Dikarenakan terdapat aturan tidak boleh menggunakan crontab, maka kita menggunak
 ``strcat(Filename, "_grey.png")``; menambahkan karakter pada suatu ekstensi yang berbasis .png
 
 
+
 **SOAL NO 2**
 
 
@@ -174,6 +175,7 @@ Catatan: Tidak boleh menggunakan crontab
  
  
  
+ 
  **SOAL NO 3**
  
  
@@ -209,6 +211,7 @@ Pastikan file daftar.txt dapat diakses dari text editor
    `` int cetak = read(inipipe[2],hasil,sizeof(hasil));`` untuk mengambil hasil grep
    
 ``fprintf(file," Berikut Berupa File berformat .txt :\n%.*s\n",cetak,hasil);`` untuk memasukan hasil ls grep ke file
+
 
 
  
@@ -366,6 +369,8 @@ strcpy adalah fungsi yang digunakan  untuk  menyalin  string  asal  ke-variabel 
 harus mempunyai tipe data dan dan ukuran  yang sama dengan string asal. File header yang harus disertakan adalah string.h.
 
 Fungsi strcat digunakan untuk menggabungkan dua string menjadi satu.
+
+
 
 
  **SOAL NO 5**
