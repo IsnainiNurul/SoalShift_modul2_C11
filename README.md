@@ -118,6 +118,14 @@ int main() {
 
 - ``strcat(Filename, "_grey.png")``; menambahkan karakter pada suatu ekstensi yang berbasis .png
 
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%201/before.png)
+
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%201/no1.png)
+
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%201/after1.png)
+
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%201/after.png)
+
 
 
 **SOAL NO 2**
@@ -192,6 +200,10 @@ int main() {
  
  - ``exit(EXIT_SUCCESS)`` (adalah suatu perintah jika program berhasil, maka akan melakukan perintah Exit)
  
+ 
+ ![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%202/elenkudibuat.png)
+ 
+ ![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%202/nomordua.png)
  
  
  
@@ -312,6 +324,13 @@ int main()
    
    
  -   ``fprintf(file," Berikut Berupa File berformat .txt :\n%.*s\n",cetak,rest);`` (adalah perintah untuk memasukkan hasil ls grep ke dalam file)
+
+
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%203/no3jalan.png)
+
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%203/no3ku.png)
+
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%203/no3.png)
 
 
 
@@ -456,7 +475,6 @@ if (pid > 0)
 
 ```
 
-
 **Penjelasan:**
 
 - ``int inc=1;`` (untuk melakukan inisialisasi untuk increment=1)
@@ -477,6 +495,13 @@ Fungsi strcat digunakan untuk menggabungkan dua string menjadi satu).
 
 - ``sleep(5);`` (Fungsi sleep() mempunyai parameter dalam satuan detik dan mempunyai return value 0 atau sisa waktu yang tersisa bila di-interupsi oleh signal handler, sleep(5) akan menjalankan setiap 5 detik)
 
+
+
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%204/no4jalan.png)
+
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%204/no4ku.png)
+
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%204/no4.png)
 
 
 
@@ -678,9 +703,13 @@ Berfungsi untuk membuat parent
 ```
    
 Perintah untuk setiap 1 menit masukkan file log#.log
-    ``minute+=1;
+    ``minute+=1;``
     
     
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%205/no5ku.png)
+
+![alt tag](https://github.com/IsnainiNurul/SoalShift_modul2_C11/blob/master/soal%205/no5.png)
+
     
  
     
