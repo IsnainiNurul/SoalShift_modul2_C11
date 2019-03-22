@@ -18,7 +18,78 @@ Catatan : Tidak boleh menggunakan crontab.
 
 Dikarenakan terdapat aturan tidak boleh menggunakan crontab, maka kita menggunakan daemon hal ini dikarenakan perintah daemon agar file yang berekstensi .png dapat dipindahkan secara realtime atau periodik dan berjalan di belakang layar pada suatu folder ke /home/user/modul2/gambar. Daemon juga dapat membuat suatu aplikasi yang berjalan di sevice berjalan secara otomatis, daemon tidak memiliki parent proses ID.
 
-**Penjelasan :**
+**Source Code :**
+```
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdio.h>
+#include <dirent.h>
+#include <sys/types.h>
+#include <fcntl.h>
+#include <errno.h>
+
+int main() {
+  pid_t pid, sid;
+  pid = fork();
+  if (pid > 0) {
+    exit(EXIT_SUCCESS);
+  }
+  if (pid < 0) {
+    exit(EXIT_FAILURE);
+  }
+  umask(0);
+  sid = setsid();
+  if (sid < 0) 
+    {
+      exit(EXIT_FAILURE);
+    }
+  if ((chdir("/home/isnaini/modul2")) < 0) 
+    {
+      exit(EXIT_FAILURE);
+    }
+  close(STDIN_FILENO);
+  close(STDOUT_FILENO);
+  close(STDERR_FILENO);
+
+  while(1)
+    {
+      DIR *directory;
+      if (directory=opendir ("/home/isnaini/modul2/")) 
+      // mengubah direktori ke suatu path secara khusus, fungsi untuk membuka direktori handle gambar dan akan menjalankan 
+      perintah pada gambar yang akan dipindah dan akan membuka pada direktori home/isnaini/modul2
+      {
+      struct dirent *infolder;
+      while ((infolder = readdir(directory)) != NULL) // untuk mengecek isi di dalam folder sehingga dapat menjalankan perintah
+      selanjutnya
+      {
+	char Filename[1024];
+	int panjang = (int) strlen(infolder->d_name);// panjang karakter sejumlah berapa
+	char *name = infolder->d_name;
+	if(name[panjang-4] == '.' && name[panjang-3] == 'p' && name[panjang-2] == 'n' && name[panjang-1] == 'g')// perintah yang berfungsi untuk menampung panjang karakter dari nama gambar tanpa ekstensi .png dan akan mereset serta membuat agar kondisi awal dari array tidak berisi.
+	{
+	  strcpy(Filename, "gambar/");// untuk mencopy
+	  strcat(Filename, name);// untuk menampung filename yang telah disimpan
+	  panjang = (int)strlen(Filename);
+	  Filename[panjang-4] = '\0';
+	  strcat(Filename, "_grey.png");// menambah karakter pada suatu ekstensi yang berbasis .png
+	  if(fork()==0)
+	   {
+	    char *move[4] = {"mv", name, Filename, NULL};
+	    execv("/bin/mv", move);
+	   }
+	  }
+        }
+      closedir(directory);
+    }
+  sleep(10);
+  }
+  exit(EXIT_SUCCESS);
+}
+
+```
+**Penjelasan: **
 
 - ``DIR *directory``; adalah suatu variable dengan nama folder yang menggunakan tipe data DIR.Jika digunakan tanpa parameter, perintah ini dapat menampilkan daftar berkas-berkas dan subdirektori yang terdapat di dalam direktori aktif. Berkas ini memiliki satu parameter, yakni lokasi direktori di mana hendak menampilkan daftar isi direktori. 
 
@@ -49,8 +120,6 @@ Dikarenakan terdapat aturan tidak boleh menggunakan crontab, maka kita menggunak
 
 
 **SOAL NO 2**
-
-
 Pada suatu hari Kusuma dicampakkan oleh Elen karena Elen dimenangkan oleh orang lain. Semua kenangan tentang Elen berada pada file bernama “elen.ku” pada direktori “hatiku”. Karena sedih berkepanjangan, tugas kalian sebagai teman Kusuma adalah membantunya untuk menghapus semua kenangan tentang Elen dengan membuat program C yang bisa mendeteksi owner dan group dan menghapus file “elen.ku” setiap 3 detik dengan syarat ketika owner dan grupnya menjadi “www-data”. Ternyata kamu memiliki kendala karena permission pada file “elen.ku”. Jadi, ubahlah permissionnya menjadi 777. Setelah kenangan tentang Elen terhapus, maka Kusuma bisa move on.
 Catatan: Tidak boleh menggunakan crontab
 
