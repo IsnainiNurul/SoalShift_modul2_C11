@@ -89,8 +89,9 @@ int main() {
 }
 
 ```
-**Penjelasan: **
 
+
+**Penjelasan :**
 - ``DIR *directory``; adalah suatu variable dengan nama folder yang menggunakan tipe data DIR.Jika digunakan tanpa parameter, perintah ini dapat menampilkan daftar berkas-berkas dan subdirektori yang terdapat di dalam direktori aktif. Berkas ini memiliki satu parameter, yakni lokasi direktori di mana hendak menampilkan daftar isi direktori. 
 
 
