@@ -2,9 +2,9 @@
 
 SoalShift modul2 Sistem Operasi kelas C
 
-Isnaini Nurul KurniaSari 05111740000010
+Isnaini Nurul KurniaSari (05111740000010)
 
-Argo Galih Pribadi       05111740000150
+Argo Galih Pribadi       (05111740000150)
 
 
 **SOAL NO 1**
@@ -20,31 +20,31 @@ Dikarenakan terdapat aturan tidak boleh menggunakan crontab, maka kita menggunak
 
 **Penjelasan :**
 
-``DIR *directory``; adalah suatu variable dengan nama folder yang menggunakan tipe data DIR.Jika digunakan tanpa parameter, perintah ini dapat menampilkan daftar berkas-berkas dan subdirektori yang terdapat di dalam direktori aktif. Berkas ini memiliki satu parameter, yakni lokasi direktori di mana hendak menampilkan daftar isi direktori. 
+- ``DIR *directory``; adalah suatu variable dengan nama folder yang menggunakan tipe data DIR.Jika digunakan tanpa parameter, perintah ini dapat menampilkan daftar berkas-berkas dan subdirektori yang terdapat di dalam direktori aktif. Berkas ini memiliki satu parameter, yakni lokasi direktori di mana hendak menampilkan daftar isi direktori. 
 
 
-``struct dirent *infolder``; Struct adalah tipe data bentukan yang berisi kumpulan variabel-variabel yang berada dalam satu nama yang sama dan memiliki kaitan satu sama lain. Berbeda dengan array hanya berupa kumpulan variabel yang bertipe data sama, struct bisa memiliki variabel-variabel yang bertipe data sama atau berbeda, bahkan bisa menyimpan variabel yang bertipe data array atau struct itu sendiri. Variabel-variabel yang menjadi anggota struct disebut dengan elemen struct.
+- ``struct dirent *infolder``; Struct adalah tipe data bentukan yang berisi kumpulan variabel-variabel yang berada dalam satu nama yang sama dan memiliki kaitan satu sama lain. Berbeda dengan array hanya berupa kumpulan variabel yang bertipe data sama, struct bisa memiliki variabel-variabel yang bertipe data sama atau berbeda, bahkan bisa menyimpan variabel yang bertipe data array atau struct itu sendiri. Variabel-variabel yang menjadi anggota struct disebut dengan elemen struct.
 
 
-``chdir("/home/isnaini/modul2)``; akan mengubah direktori ke suatu path secara khusus 
+- ``chdir("/home/isnaini/modul2)``; akan mengubah direktori ke suatu path secara khusus 
 
 
-``directory=opendir ("/home/isnaini/modul2/")``;adalah fungsi untuk membuka direktori handle gambar yaitu direktori asal dan akan menjalankan perintah pada gambar yang akan di pindah akan membuka direktori pada home/isnaini/modul2.
+- ``directory=opendir ("/home/isnaini/modul2/")``;adalah fungsi untuk membuka direktori handle gambar yaitu direktori asal dan akan menjalankan perintah pada gambar yang akan di pindah akan membuka direktori pada home/isnaini/modul2.
 
 
-``while ((infolder = readdir(directory)) != NULL)`` untuk mengecek isi dalam folder sehingga dapat menjalankan perintah selanjutnya.
+- ``while ((infolder = readdir(directory)) != NULL)`` untuk mengecek isi dalam folder sehingga dapat menjalankan perintah selanjutnya.
 
 
-``name[panjang-4] == '.' && name[panjang-3] == 'p' && name[panjang-2] == 'n' && name[panjang-1] == 'g'``; perintah untuk menampung panjang karakter dari nama gambar tanpa ekstensi .png dan akan mereset serta membuat agar kondisi awal dari aray tidak berisi.
+- ``name[panjang-4] == '.' && name[panjang-3] == 'p' && name[panjang-2] == 'n' && name[panjang-1] == 'g'``; perintah untuk menampung panjang karakter dari nama gambar tanpa ekstensi .png dan akan mereset serta membuat agar kondisi awal dari aray tidak berisi.
 
 
-``strcat(Filename, name)``; berisi nama sumber yang akan dipindah.
+- ``strcat(Filename, name)``; berisi nama sumber yang akan dipindah.
 
 
-``Filename[panjang-4] = '\0'`` ; perintah untuk menghapus dari belakang dengan urutan array
+- ``Filename[panjang-4] = '\0'`` ; perintah untuk menghapus dari belakang dengan urutan array
 
 
-``strcat(Filename, "_grey.png")``; menambahkan karakter pada suatu ekstensi yang berbasis .png
+- ``strcat(Filename, "_grey.png")``; menambahkan karakter pada suatu ekstensi yang berbasis .png
 
 
 
@@ -106,21 +106,21 @@ int main() {
 
 **Penjelasan :**
 
-``struct stat file`` (adalah perintah untuk menyimpan data yang kompleks berupa file) 
+- ``struct stat file`` (adalah perintah untuk menyimpan data yang kompleks berupa file) 
 
-``stat("/home/isnaini/hatiku/elen.ku",&file)``; (adalah suatu variable untuk menyimpan lokasi file yang disimpan)
+- ``stat("/home/isnaini/hatiku/elen.ku",&file)``; (adalah suatu variable untuk menyimpan lokasi file yang disimpan)
 
- ``if(!strcmp(getpwuid(file.st_uid)->pw_name,"www-data") && !strcmp(getgrgid(file.st_gid)->gr_name,"www-data")){``
+-  ``if(!strcmp(getpwuid(file.st_uid)->pw_name,"www-data") && !strcmp(getgrgid(file.st_gid)->gr_name,"www-data")){``
  
 (adalah suatu variable yang berfungsi untuk mencari owner dengan group yaitu dengan perintah strcmp yang nantinya akan membandingkan dua buah string).
  
- ``chmod("/home/isnaini/hatiku/elen.ku", 0777)`` (adalah suatu perintah untuk mengubah permission file elen.ku, chmod berfungsi untuk mengatur sebuah hak akses atau sebuah permission terhadap file/ directory kepada user.)
+-  ``chmod("/home/isnaini/hatiku/elen.ku", 0777)`` (adalah suatu perintah untuk mengubah permission file elen.ku, chmod berfungsi untuk mengatur sebuah hak akses atau sebuah permission terhadap file/ directory kepada user.)
  
- ``remove("/home/isnaini/hatiku/elen.ku")``(adalah suatu perintah untuk menghapus file elen.ku)
+ - ``remove("/home/isnaini/hatiku/elen.ku")``(adalah suatu perintah untuk menghapus file elen.ku)
  
- ``sleep(3)``   (adalah sutau perintah delay selama 3 detik untuk menghapus file elen.ku)
+ - ``sleep(3)``   (adalah sutau perintah delay selama 3 detik untuk menghapus file elen.ku)
  
- ``exit(EXIT_SUCCESS)`` (adalah suatu perintah jika program berhasil, maka akan melakukan perintah Exit)
+ - ``exit(EXIT_SUCCESS)`` (adalah suatu perintah jika program berhasil, maka akan melakukan perintah Exit)
  
  
  
@@ -224,24 +224,25 @@ int main()
 
 **Penjelasan**
    
-   ``pipe(pepiku);`` (adalah perintah untuk membuat pipe) 
+ -   ``pipe(pepiku);`` (adalah perintah untuk membuat pipe) 
         	
-   ``pipe(pepiku+2);`` (adalah perintah untuk menambah pipe)
+ -   ``pipe(pepiku+2);`` (adalah perintah untuk menambah pipe)
    
-   ``execl("/usr/bin/unzip","unzip", "campur2.zip", NULL)`` (adalah perintah untuk mengekstrak file campur.zip)
+ -   ``execl("/usr/bin/unzip","unzip", "campur2.zip", NULL)`` (adalah perintah untuk mengekstrak file campur.zip)
    
-   ``dup2(inipipe[1], STDOUT_FILENO);`` (adalah perintah untuk menyimpan hasil ls yang di write yang nantinya akan diduplicate yaitu dengan menggunakan perintah dup)
+ -   ``dup2(inipipe[1], STDOUT_FILENO);`` (adalah perintah untuk menyimpan hasil ls yang di write yang nantinya akan diduplicate yaitu dengan menggunakan perintah dup)
    
-  ``dup2(inipipe[0],STDIN_FILENO);``(adalah perintah untuk membaca hasil ls yang di read yang nantinya akan di duplicate yaitu dengan menggunakan perintah dup)
+-   ``dup2(inipipe[0],STDIN_FILENO);``(adalah perintah untuk membaca hasil ls yang di read yang nantinya akan di duplicate yaitu dengan menggunakan perintah dup)
   
-  ``close(pepiku[1]);`` (setiap perintah dup perlu close untuk dapat ditutup)
+ -  ``close(pepiku[1]);`` (setiap perintah dup perlu close untuk dapat ditutup)
   
-   `` int cetak = read(inipipe[2],hasil,sizeof(hasil));`` (adalah perintah untuk mengambil hasil grep)
+  -  `` int cetak = read(inipipe[2],hasil,sizeof(hasil));`` (adalah perintah untuk mengambil hasil grep)
    
-   ``file = fopen("daftar.txt","w+");`` (adalah perintah yang akan membuka file daftar.txt)
+  -  ``file = fopen("daftar.txt","w+");`` (adalah perintah yang akan membuka file daftar.txt)
    
    
-   ``fprintf(file," Berikut Berupa File berformat .txt :\n%.*s\n",cetak,rest);`` (adalah perintah untuk memasukkan hasil ls grep ke dalam file)
+ -   ``fprintf(file," Berikut Berupa File berformat .txt :\n%.*s\n",cetak,rest);`` (adalah perintah untuk memasukkan hasil ls grep ke dalam file)
+
 
 
 
@@ -388,13 +389,13 @@ if (pid > 0)
 
 **Penjelasan:**
 
-``int inc=1;`` (untuk melakukan inisialisasi untuk increment=1)
+- ``int inc=1;`` (untuk melakukan inisialisasi untuk increment=1)
 
-``char makanEnak[]="/home/galihpribadi04/Documents/makanan/makan_enak.txt";`` (adalah letak lokasi dimana file makan_enak.txt berada)
+- ``char makanEnak[]="/home/galihpribadi04/Documents/makanan/makan_enak.txt";`` (adalah letak lokasi dimana file makan_enak.txt berada)
 
- ``rentang = difftime(now, info.st_atime);`` (untuk Membuat file setiap 30 detik)
+-  ``rentang = difftime(now, info.st_atime);`` (untuk Membuat file setiap 30 detik)
    
- ``strcpy(path, "/home/galihpribadi04/Documents/makanan/makan_sehat");`` (untuk membuat file makan_sehat secara otomastis
+-  ``strcpy(path, "/home/galihpribadi04/Documents/makanan/makan_sehat");`` (untuk membuat file makan_sehat secara otomastis
   
 strcpy adalah fungsi yang digunakan  untuk  menyalin  string  asal  ke-variabel  string  tujuan, dengan syarat string tujuan 
 
@@ -402,11 +403,9 @@ harus mempunyai tipe data dan dan ukuran  yang sama dengan string asal. File hea
 
 Fungsi strcat digunakan untuk menggabungkan dua string menjadi satu).
 
-``strcat(path,str);`` (perintah untuk menambahkan string sumber kebagian akhir dari string tujuan yang berupa path)
+- ``strcat(path,str);`` (perintah untuk menambahkan string sumber kebagian akhir dari string tujuan yang berupa path)
 
-``sleep(5);`` (Fungsi sleep() mempunyai parameter dalam satuan detik dan mempunyai return value 0 atau sisa waktu yang tersisa bila di-interupsi oleh signal handler, sleep(5) akan menjalankan setiap 5 detik)
-
-
+- ``sleep(5);`` (Fungsi sleep() mempunyai parameter dalam satuan detik dan mempunyai return value 0 atau sisa waktu yang tersisa bila di-interupsi oleh signal handler, sleep(5) akan menjalankan setiap 5 detik)
 
 
 
@@ -433,7 +432,7 @@ NB: Dilarang menggunakan crontab dan tidak memakai argumen ketika menjalankan pr
 **Jawab**
 
 **nomor 5 a**
-``
+```
 #include <sys/types.h>
 
 #include <sys/stat.h>
@@ -578,33 +577,37 @@ void crDaemon(){
     
     close(STDERR_FILENO);
 
-}``
+}
+
+```
 
 
-Penjelasan :
+**Penjelasan :**
 
-   Berfungsi untuk membuat file setiap 30 menit :
-   
-   ``while(1) {
+Berfungsi untuk membuat file setiap 30 menit :
+  ``` 
+  while(1) {
     if(minute%30 == 0){
       time_t now = time(NULL);
       struct tm *p = localtime(&now);
       strftime(dtime, sizeof(dtime)-1, "%Y:%m:%d-%H:%M", p);
-    }``
+    }
+   ```
     
-    
-  BerfUngsi untuk membuat parent
-    ``child = fork();
+Berfungsi untuk membuat parent
+```
+    child = fork();
     if(child == 0){
       char cmd[200];
       sprintf(cmd, "%s/%s", dir, dtime);
       char *arg[4] = {"mkdir", "-p" ,cmd, NULL};
-      execv("/bin/mkdir", arg);
+      execv("/bin/mkdir", arg);// perintah untuk membuat folder
     }
     while ((wait(&status)) > 0);
-    kill(child, SIGKILL);``
-    
-   Setiap 1 menit masukkan file log#.log
+    kill(child, SIGKILL);
+```
+   
+Perintah untuk setiap 1 menit masukkan file log#.log
     ``minute+=1;
     
     
